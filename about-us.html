@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Rural Education Initiative</title>
+    <link rel="icon" type="image/x-icon" href="EduNexusBg.png" />
+    <style>
+      /* General Styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #f5b7b1, #ff9a8b);
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #212121, #3a3a3a);
+        color: white;
+        padding: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        position: relative;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        animation: fadeInDown 1s ease-in-out;
+      }
+
+      .logo {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+        animation: fadeInLeft 1s ease-in-out;
+      }
+
+      .logo img {
+        height: 50px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .logo img:hover {
+        transform: scale(1.1);
+      }
+
+      #about-us-header-title {
+        text-align: center;
+        text-transform: uppercase;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      .section-title {
+        font-size: 32px;
+        color: #ff5722;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .section-content {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: justify;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+
+      .highlight {
+        color: #4caf50;
+        font-weight: bold;
+      }
+
+      .mission, .team {
+        text-align: center;
+      }
+
+      .team {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .team-member {
+        background: #f3f3f3;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        background-image: linear-gradient(to right bottom, #ffcc00, #ff4444);
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      .team-member:hover {
+        transform: scale(1.1);
+        background-color: #ffb74d;
+      }
+
+      .team-member img {
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .team-member img:hover {
+        transform: scale(1.05);
+      }
+
+      .team-member h3 {
+        font-size: 22px;
+        color: #333;
+        margin-top: 15px;
+      }
+
+      .team-member p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      footer {
+        background: #2d2d2d;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        position: relative;
+        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      /* Keyframes for Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .team {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .logo img {
+          height: 40px;
+        }
+
+        header {
+          font-size: 24px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .team {
+          grid-template-columns: 1fr;
+        }
+
+        header {
+          font-size: 20px;
+          padding: 15px;
+        }
+
+        .logo img {
+          height: 30px;
+        }
+
+        .section-title {
+          font-size: 24px;
+        }
+        .logo {
+          position: absolute;
+          top: 0;
+          left: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img style="width: 100px; height: 80px;" src="edu.png" alt="EduNexus Logo" />
+      </div>
+      <span id="about-us-header-title">About Us</span>
+    </header>
+
+    <div class="container">
+      <p class="section-content">
+        At the heart of the Rural Education Initiative, our mission is to revolutionize access to quality education for rural communities, empowering students to overcome barriers and unlock their true potential. We aim to bridge the significant educational divide between urban and rural regions, where disparities in access to learning resources often stifle the growth and opportunities of the youth.
+        We believe that education is the cornerstone of societal progress and the key to unlocking opportunities for every individual, regardless of geographical location. Our commitment is to foster a self-sustaining ecosystem where rural students not only gain access to knowledge but also develop critical skills that enable them to thrive in an ever-evolving world. By integrating innovative educational tools, tailored curricula, and community-based initiatives, we aim to create a scalable model that can inspire transformation, inclusivity, and progress across the globe.
+        In pursuit of this mission, we are determined to establish educational infrastructures that are both adaptive to local needs and resilient to external challenges. Our focus on localization, sustainability, and scalability will empower communities to take charge of their educational development, ensuring that learning becomes a lifelong pursuit, rather than a temporary or limited experience.
+        We envision a future where every rural community is equipped with the tools and support necessary for academic success, professional development, and the ability to contribute to the global knowledge economy. Our mission is not just to provide education but to redefine what it means to be educated in a world where technology, culture, and education intersect.
+      </p>
+
+      <h2 class="section-title">The Inception of Our Initiative</h2>
+      <p class="section-content">
+        The Rural Education Initiative was conceived out of a critical realization: that for many rural communities, access to education is not a privilege, but a distant dream. Despite rapid advancements in urban areas, rural regions remain underserved, with students facing insurmountable challenges due to lack of infrastructure, limited internet access, and insufficient educational resources.
+        In many rural areas, internet connectivity is a luxury, severely limiting access to quality education and information. We recognized this issue and were determined to find a solution that could overcome the technological barriers faced by these communities. Our solution provides access to educational content offline, using local networks, and is designed to serve areas where internet connectivity is either limited or non-existent.
+        Our initiative was sparked by firsthand experiences—witnessing rural students and educators struggle to access basic educational materials due to the lack of reliable internet connections. This inequality motivated us to create an alternative solution that empowers rural communities to access the knowledge and tools needed to succeed academically and professionally. We believe that knowledge is a universal right, and our goal is to ensure that every student has the chance to learn, no matter where they are.
+      </p>
+      <h2 class="section-title">Our Long-Term Vision and Objective</h2>
+      <p class="section-content">
+        The Rural Education Initiative is driven by a singular objective: to dismantle the educational divide between rural and urban areas. We seek to provide rural communities with the resources, tools, and infrastructure they need to access comprehensive, high-quality education, making education a right, not a privilege.
+        Our vision is to create a scalable, sustainable educational model that can be replicated across rural regions globally. By fostering collaboration between educators, students, and communities, we aim to create an educational ecosystem that is inclusive, resilient, and capable of delivering long-term benefits. Our initiative seeks not only to provide academic knowledge but to empower students with the critical thinking, problem-solving, and technological skills required to thrive in an increasingly interconnected and technology-driven world.
+        Our objective goes beyond merely offering educational content; we strive to develop holistic solutions that integrate local involvement, technological innovation, and community-driven efforts. By addressing the unique needs of rural communities, we are committed to ensuring that education is not just about knowledge transfer, but also about personal development, skills enhancement, and community empowerment.
+        In the long term, we aim to create an environment where rural students are not just consumers of education, but also creators, leaders, and entrepreneurs who can contribute to their communities and the world. Our goal is to make a lasting impact, empowering individuals to lead social and economic transformation, and to contribute meaningfully to the global knowledge economy.
+      </p>
+      <h2 class="section-title">Special Thanks to Our Team</h2>
+      <div class="team">
+        <div class="team-member">
+          <img style="width: 200px;" src="team-1.jpg" alt="colaborator image" />
+          <h3>Nishant Sankar Swain</h3>
+          <p>Team leader</p>
+        </div>
+        <!--
+        <div class="team-member">
+          <img style="width: 200px;" src="team-2.jpg" alt="colaborator image" />
+          <h3>Swagat Pattnaik</h3>
+          <p>Backend and NodeJs handler+</p>
+        </div>-->
+        <div class="team-member">
+          <img style="width: 200px; height: 220px;" src="team-4.jpg" alt="colaborator image" />
+          <h3>Aditya Shubhaditya</h3>
+          <p>Chatbot</p>
+        </div>
+        <!--
+        <div class="team-member">
+          <img style="width: 190px;" src="team-3.jpg" alt="colaborator image" />
+          <h3>Prarthana Pattnaik</h3>
+          <p>Frontend and React handler</p>
+        </div>-->
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Rural Education Initiative. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

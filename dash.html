@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            transition: all 0.3s ease;
+            padding-top: 20px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #34495e;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .sidebar-header h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            padding: 15px 20px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu li:hover {
+            background-color: #2980b9;
+            border-radius: 5px;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        .sidebar-menu i {
+            font-size: 20px;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+            transition: margin-left 0.3s ease;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: #2980b9;
+            margin-right: 10px;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+        }
+
+        /* PDF Embed Styles */
+        .pdf-embed {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Collapsible Categories */
+        .collapsible {
+            background-color: #ffffff;
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover {
+            background-color: #f1f1f1;
+        }
+
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #2c3e50;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        .collapsible-content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f9f9f9;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .sidebar-header h2 {
+                display: none;
+            }
+
+            .sidebar-menu {
+                display: none;
+            }
+
+            .sidebar-menu.active {
+                display: block;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .content {
+                margin-left: 60px;
+            }
+
+            .card {
+                margin-left: 60px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Dashboard</h2>
+            <span class="menu-icon" id="menu-icon">&#9776;</span>
+        </div>
+        <ul class="sidebar-menu" id="menu">
+            <li><a href="#books"><i class="fas fa-book"></i>Books for Library</a></li>
+            <li><a href="#quiz"><i class="fas fa-question-circle"></i>Quiz Test</a></li>
+            <li><a href="#games"><i class="fas fa-gamepad"></i>Interactive Games</a></li>
+            <li><a href="#profile"><i class="fas fa-user"></i>User Profile</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="fade-in">Welcome to Your Dashboard</h1>
+
+        <div id="books" class="section fade-in">
+            <h2>Books for Library</h2>
+            <p>Explore and manage a vast collection of books. You can add, remove, or update book details, and categorize them by genre, author, and more.</p>
+
+            <!-- Physics Books -->
+            <button class="collapsible">Physics</button>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>Class 8</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Physics Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Physics Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 9</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Physics Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Physics Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 10</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Physics Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Physics Book 2</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chemistry Books -->
+            <button class="collapsible">Chemistry</button>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>Class 8</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Chemistry Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Chemistry Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 9</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Chemistry Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Chemistry Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 10</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Chemistry Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Chemistry Book 2</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Math Books -->
+            <button class="collapsible">Math</button>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>Class 8</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Math Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Math Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 9</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Math Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Math Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 10</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Math Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Math Book 2</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Biology Books -->
+            <button class="collapsible">Biology</button>
+            <div class="collapsible-content">
+                <div class="card">
+                    <h3>Class 8</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Biology Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Biology Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 9</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Biology Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Biology Book 2</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Class 10</h3>
+                    <ul>
+                        <li><a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">Biology Book 1</a></li>
+                        <li><a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">Biology Book 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Sections (Quiz, Games, Profile) -->
+        <!-- ... (Same as before) ... -->
+    </div>
+
+    <script>
+        // Toggle Sidebar Menu
+        const menuIcon = document.getElementById('menu-icon');
+        const sidebar = document.getElementById('sidebar');
+        const menu = document.getElementById('menu');
+
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+
+        // Collapsible Categories
+        const collapsibles = document.querySelectorAll(".collapsible");
+        collapsibles.forEach((collapsible) => {
+            collapsible.addEventListener("click", function () {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
